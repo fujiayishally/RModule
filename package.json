@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/fujiayishally/mimic_require#readme",
   "devDependencies": {
-    "gulp": "^4.0.0"
+    "browser-sync": "^2.26.3",
+    "del": "^4.0.0",
+    "gulp": "^4.0.0",
+    "gulp-uglify": "^3.0.2"
   }
 }

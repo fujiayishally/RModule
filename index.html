@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+	<meta charset = "UTF-8">
+	<title>mimic_require test</title>
+	<script src = "dist/mimic_require.js"></script>
+</head>
+<body>
+<div id = "el1"></div>
+<div id = "el2"></div>
+<script type = "text/javascript">
+	mimic_require.config({
+		paths: [
+			'test/modules/m1.js',
+			'test/modules/m2.js'
+		]
+	});
+	mimic_require.use(function () {
+
+		var m1 = mimic_require('test/modules/m1.js');
+		var m2 = mimic_require('test/modules/m2.js');
+
+		m1.a('el1', 'hello');
+		m2.b('el2', 'world!');
+	});
+</script>
+</body>
+</html>
