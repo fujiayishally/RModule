@@ -1,0 +1,22 @@
+{
+  "name": "mimic_require",
+  "version": "1.0.0",
+  "description": "模仿RequireJS的轻量级模块引入框架",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fujiayishally/mimic_require.git"
+  },
+  "author": "Shally Fu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fujiayishally/mimic_require/issues"
+  },
+  "homepage": "https://github.com/fujiayishally/mimic_require#readme",
+  "devDependencies": {
+    "gulp": "^4.0.0"
+  }
+}
