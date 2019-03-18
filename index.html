@@ -3,25 +3,40 @@
 <head>
 	<meta charset = "UTF-8">
 	<title>mimic_require test</title>
-	<script src = "dist/mimic_require.js"></script>
+	<script src = "dist/RModule.js"></script>
 </head>
 <body>
-<div id = "el1"></div>
-<div id = "el2"></div>
+<h1>Test RModule Test Page!</h1>
+<div id = "div1"></div>
+<div id = "div2"></div>
+<div id = "div3"></div>
+
 <script type = "text/javascript">
-	mimic_require.config({
-		paths: [
-			'test/modules/m1.js',
-			'test/modules/m2.js'
+	RModule.config({
+		alias: {
+			'js': 'test/js/'
+		},
+		preload: [
+			'@js/m1.js',  //基本使用
+			'@js/m2.js',  //嵌套依赖
+			'@js/m3.js'   //循环依赖，会报错
 		]
 	});
-	mimic_require.use(function () {
 
-		var m1 = mimic_require('test/modules/m1.js');
-		var m2 = mimic_require('test/modules/m2.js');
+	RModule.task(function () {
+		var num = RModule.get('num');
+		num.test('div1', 5);
+	});
 
-		m1.a('el1', 'hello');
-		m2.b('el2', 'world!');
+
+	RModule.task(function () {
+		var add10 = RModule.get('add10');
+		add10('div2', 5);
+	});
+
+	RModule.task(function () {
+		var multiply10 = RModule.get('multiply10');
+		multiply10('div3', 5);
 	});
 </script>
 </body>

@@ -1,31 +1,40 @@
 var gulp = require('gulp');
+var concat = require('gulp-concat');
+var umd = require('gulp-umd');
 var uglify = require('gulp-uglify');
-var watch = require('glob-watcher');
-var bs = require('browser-sync');
 var del = require('del');
+var bs = require('browser-sync').create();
+var watch = require('glob-watcher');
 
-var DEST = 'dist/';
+var SRC = ['src/utils/*.js', 'src/global.js', 'src/mixin/*.js', 'src/RModule.js'];
+var SRC_DEST = 'dist/';
+var JS_WATCH = ['src/*.js', 'src/**/*.js', 'test/**/*.js'];
+var HTML_WATCH = ['./*.html'];
 
 function jsMinify() {
-	gulp.src('src/*.js')
+	gulp.src(SRC)
+			.pipe(concat('RModule.js'))
+			.pipe(umd({
+				exports: function (file) {
+					return 'new RModule()';
+				}
+			}))
 			.pipe(uglify())
-			.pipe(gulp.dest(DEST));
+			.pipe(gulp.dest(SRC_DEST));
 }
 
 function delDests() {
-	console.log('delDests');
-
-	del.sync([DEST]);
+	del.sync([SRC_DEST]);
 }
 
 function bsServer(cb) {
-	bs({
+	bs.init({
 		server: {baseDir: './'}
 	});
 	cb();
 }
 
-function jsWatchHandler(path){
+function jsWatchHandler(path) {
 	console.log('- 修改:' + path);
 	delDests();
 	jsMinify();
@@ -36,7 +45,7 @@ function jsWatch(cb) {
 	delDests();
 	jsMinify();
 
-	var watcher = watch(['src/*.js', 'test/**/*.js']);
+	var watcher = watch(JS_WATCH);
 	watcher.on('change', jsWatchHandler);
 	watcher.on('add', jsWatchHandler);
 	watcher.on('unlink', jsWatchHandler);
@@ -44,12 +53,14 @@ function jsWatch(cb) {
 	cb();
 }
 
+function htmlWatchHandler(path) {
+	console.log('- 修改HTML:' + path);
+	bs.reload();
+}
+
 function htmlWatch(cb) {
-	var watcher = watch(['*.html']);
-	watcher.on('change', function (path) {
-		console.log('- 修改HTML:' + path);
-		bs.reload();
-	});
+	var watcher = watch(HTML_WATCH);
+	watcher.on('change', htmlWatchHandler);
 	cb();
 }
 
