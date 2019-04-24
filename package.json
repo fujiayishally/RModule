@@ -1,25 +1,32 @@
 {
-  "name": "mimic_require",
-  "version": "1.0.0",
-  "description": "模仿RequireJS的轻量级模块引入框架",
-  "main": "index.js",
+  "name": "RModule",
+  "version": "1.0.1",
+  "description": "一个类似RequireJS的模块加载器。",
+  "main": "./dist/RModule.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack-dev-server --open -d",
+    "prod": "webpack -p"
   },
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.1",
+    "babel-loader": "^8.0.5",
+    "clean-webpack-plugin": "^2.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.3.4000",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  },
+  "dependencies": {},
+  "author": "Shally Fu",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fujiayishally/mimic_require.git"
+    "url": "https://github.com/fujiayishally/RModule.git"
   },
-  "author": "Shally Fu",
-  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/fujiayishally/mimic_require/issues"
+    "url": "https://github.com/fujiayishally/RModule/issues"
   },
-  "homepage": "https://github.com/fujiayishally/mimic_require#readme",
-  "devDependencies": {
-    "browser-sync": "^2.26.3",
-    "del": "^4.0.0",
-    "gulp": "^4.0.0",
-    "gulp-uglify": "^3.0.2"
-  }
+  "homepage": "https://github.com/fujiayishally/RModule#readme",
+  "license": "ISC"
 }

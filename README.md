@@ -11,7 +11,6 @@
 管理全局模块路径，预加载所需模块文件，只能配置一次，建议使用独立配置文件引入。
 - options.base {String} 模块加载根路径,默认是当前站点主地址。
 - options.alias {Object} 路径别名，在引用路径时会做简单的替换，可以嵌套使用。
-- options.shim {} 
 - options.preload {Array<String>} 模块文件路径，最终转换成可供script标签加载的文件路径。路径格式如下：
 1. "./path/module",
 2. "/path/module"，
