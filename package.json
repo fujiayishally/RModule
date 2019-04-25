@@ -1,6 +1,6 @@
 {
   "name": "RModule",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "一个类似RequireJS的模块加载器。",
   "main": "./dist/RModule.js",
   "scripts": {
